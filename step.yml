@@ -22,6 +22,6 @@ inputs:
     title: golint target packages
     summary: golint target packages
     description: |-
-      Newline separated list of go packages, to run the golint command against.
+      Newline (`\n`) separated list of go packages, to run the golint command against.
 
-      Example: `github.com/bitrise-steplib/steps-go-list\ngithub.com/bitrise-steplib/steps-go-list/gotool`
+      Example: `github.com/my/step\ngithub.com/bitrise/step/tool`
