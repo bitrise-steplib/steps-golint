@@ -44,11 +44,13 @@ func main() {
 	log.Infof("\nRunning golint...")
 
 	for _, p := range strings.Split(packages, "\n") {
-		cmd := command.NewWithStandardOuts("golint", "-set_exit_status", p)
+		cmd := command.New("golint", "-set_exit_status", p)
 
 		log.Printf("$ %s", cmd.PrintableCommandArgs())
 
-		if err := cmd.Run(); err != nil {
+		if out, err := cmd.RunAndReturnTrimmedCombinedOutput(); err != nil || strings.TrimSpace(out) != "" {
+			log.Errorf("golint failed")
+			log.Printf(out)
 			failf("golint failed: %s", err)
 		}
 	}
