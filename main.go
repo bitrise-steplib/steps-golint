@@ -32,6 +32,7 @@ func main() {
 
 	if !installedInPath("golint") {
 		cmd := command.New("go", "get", "-u", "golang.org/x/lint/golint")
+		cmd.SetDir("/") // workaround for https://github.com/golang/go/issues/30515 to install the package globally
 
 		log.Infof("\nInstalling golint")
 		log.Donef("$ %s", cmd.PrintableCommandArgs())
